@@ -17,16 +17,17 @@ router.post('/login', jsonParser, function(req, res, next) {
         } else if (!person) {
             res.status(401).json({message: 'Invalid login info.'});
         } else if (person) {
+            let _id = person._id.toString();
             if (bcrypt.compareSync(req.body.password, person.password)) {
                 var token = jwt.encode({
-                    id: person.id,
+                    id: _id,
                     username: person.username,
-                    expires: Date.now() + 1000 * 20
+                    expires: Date.now() + 1000 * 1000
                 }, 'test');
 
                 res.json({
                     token: token,
-                    userId: person.id,
+                    userId: _id,
                     username: person.username
                 });
             } else {
@@ -48,15 +49,16 @@ router.post('/register', [jsonParser, checkExistingUser], function(req, res, nex
             if (err) {
                 res.status(400).json({message: 'Registration failed.'});
             } else {
+                let _id = person._id.toString();
                 var token = jwt.encode({
-                    id: person.id,
+                    id: _id,
                     username: person.username,
                     expires: Date.now() + 1000 * 20
                 }, 'test');
 
                 res.status(201).json({
                     token: token,
-                    userId: person.id,
+                    userId: _id,
                     username: person.username
                 });
             }
