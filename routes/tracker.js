@@ -16,6 +16,7 @@ router.post('/add', [jsonParser, jwtauth], function(req, res, next) {
                 res.sendStatus(409);
             } else {
                 Tracker.create({
+                    name: req.body.name,
                     url: _url,
                     pricepoints: []
                 })

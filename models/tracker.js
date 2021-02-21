@@ -9,6 +9,7 @@ var PricePointsSchema = new Schema({
 var TrackerModel = mongoose.model(
     'TrackerModel',
     new Schema({
+        name: String,
         url: String,
         pricepoints: [{type: Schema.Types.ObjectId, ref:'PricePointsSchema'}]
     })
