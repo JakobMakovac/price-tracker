@@ -13,11 +13,24 @@ router.post('/add', [jsonParser, jwtauth], function(req, res, next) {
         let _url = req.body.url.split('?')[0];
         Tracker.findOne({url: _url}).exec(function (err, tracker) {
             if (tracker) {
-                res.sendStatus(409);
+                tracker.watcherIds.push(req.userId);
+                tracker.save();
+                User.findOne({_id: req.userId}).exec(function (err, person) {
+                    if (err) {
+                        console.log(err);
+                        res.sendStatus(500);
+                    } else if (person) {
+                        person.trackerIds.push(tracker._id);
+                        person.save();
+                        res.sendStatus(201);
+                    }
+                });
+
             } else {
                 Tracker.create({
                     name: req.body.name,
                     url: _url,
+                    watcherIds: [req.userId],
                     pricepoints: []
                 })
                 .then((data) => {
@@ -81,14 +94,6 @@ router.delete('/remove', [jsonParser, jwtauth], function(req, res, next) {
                     return trackerId !== req.body.trackerId;
                 })
                 person.save();
-                Tracker.deleteOne({_id: req.body.trackerId}, function(err) {
-                    if (err) {
-                        console.log(err);
-                        res.sendStatus(500);
-                    } else {
-                        res.sendStatus(204);
-                    }
-                })
             }
         });
     } else {

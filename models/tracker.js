@@ -11,6 +11,7 @@ var TrackerModel = mongoose.model(
     new Schema({
         name: String,
         url: String,
+        watcherIds: [String],
         pricepoints: [{type: Schema.Types.ObjectId, ref:'PricePointsSchema'}]
     })
 );
