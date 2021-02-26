@@ -5,8 +5,11 @@ var db = require('./database');
 
 const app = express();
 
-var url = 'mongodb://localhost:27017/priceTrackerDb';
-db.mongoose.connect(url, {useNewUrlParser: true, useUnifiedTopology: true})
+var localDbUrl = 'mongodb://localhost:27017/priceTrackerDb';
+
+var mongoUrl = process.env.MONGODB_URI || localDbUrl;
+
+db.mongoose.connect(mongoUrl, {useNewUrlParser: true, useUnifiedTopology: true})
     .then(() => {
         console.log('Connection to mongo DB established');
     })
