@@ -10,8 +10,7 @@ script: npm run build
 
 deploy:
   provider: heroku
-  api:key:
-    secure: 3R7CfXu9unh4SRPOiYF0vVNsTm6201Vhh1CO8pB2CkU28UGCTzn4CYtQ9qT63827l0PMwdLV7NYi+gc1V5wRHlxO3Jw7j7jWJTMJl2ROwRITL48oshPUr3aXy5D+wj7zB3e+0Rv//MNF40yQEeKz/2FDJ5n6c9rXBrGLgr0chuoAt9UtxiQ9gvUXUDowU7ZeNR/wQG2gP1DKbcJxFJcUs/gsKlaFlcyBSkK4UhkItwIkVwCD3Ay0uRXqVHFeW0uX8Extb4S3KzPD7qO0EgCPpzjZ/VWRLMqOAWH//xuaiXpLFqtYa4Pq1UTzUt055wmpfv64hQ9QnGmdjkdKf0q4P2LbU2oTfbQbh77C/m+HRODAg0h9U4Hz2DOPy2XW4EJr61bdAcRjroju8QjyVdJi4x9paKf9kwix1zjaIvOrNI/HbryBG3kLuAJ0V/lbxLYIORfCwtKGgLGb/v1Bw9y4jUM/rT60EwOH8jK9PJ4rp7TolHn2Sp+nbUD+UFUKI2WHlPy+VxRUOuA1BhDTdsgnEoBHecCUj3vKHxt1yeB0Fy/0VaaUOYUiVmFwMGidYIuEZxfnSY6ycyNwCzsesyvh0m0sxU7gxZTrX2YoSfvK1BRoSUIY0QS8bFJ/ffhoM2e0cx7MHE9ZBnV/8pR+lj2axNb5J+vQz3ecT8OgbQDsybo=
+  api:key: $HEROKU_API_KEY
   app: price-tracker
   on:
     branch: master
