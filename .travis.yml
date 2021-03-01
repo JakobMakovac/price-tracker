@@ -1,0 +1,16 @@
+language: node_js
+node_js: 14.15.5
+
+cache: node_modules
+
+branches:
+  only: ['master']
+
+script: npm run build
+
+deploy:
+  provider: heroku
+  api:key:
+    secure: "pQwL+O9jdHO6MDnur/0kWaIlYEcnGLN9CxbhcLNGrM3L5Jnm6QiBHJfBEnlbrN6aPiFh4po4XXAFqBBQiTwxnU8rQ3n+v6FBfV1ZGFr1J4qDZ2feeEd+NRUk9O7XS2vWkU6venDgbjKxcLQ9X4vyGgipKlYmyPB397UrQwZH5n/hp7NfPjut8hNS0VmHTAV1n6KzoM1WqQe2HgCZcfSZUE5w1lEPPMw0d5QwOlf695G+vSde6PMDbq1XqKNaiFVXIurHWWlbdiNJshe8Gm27dzK1F+92Od6+NPu5n/HuHpMNWIFvsQz43pPAk3atn2mrsxr6N60uE7YvqUb6Tzwof17WRewOhNoOlusKpSaJrHR9bvMgmamyKlccMFHGjudq9vRUzV/bywg7K5bipzogTKDVCwpYyyPeNKtMY1SeJCJS2z9aDWKTE/7opA3yzaBM60zYgx70A9LfbJ4HMivzpA2UCsWaxtE7OlOYY2iOsuSjxG16aiIi50lQWAaixnpmruhzo6ECq5iwApo8D4oxXIe7rb82L5XRvxKUW9+eYOXQJwfZPaRuuBNvJ53oi/OkbNy9flx63bpElkYxzBaYUlilVQSh/RC+REkh0LS7zLug4pirlllgl3sLWXEWGjZiv26QjE/1DcSnnkC9FuiABNG8Yr8gAC0YkvKtBLo6vOI="
+  app: price-tracker
+  on: JakobMakovac/price-tracker
