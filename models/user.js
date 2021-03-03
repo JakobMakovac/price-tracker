@@ -5,8 +5,7 @@ var UserModel = mongoose.model(
     new mongoose.Schema({
         username: String,
         email: String,
-        password: String,
-        trackerIds: [String]
+        password: String
     })
 );
 
