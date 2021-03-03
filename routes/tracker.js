@@ -11,7 +11,7 @@ const jsonParser = bodyParser.json();
 router.post('/add', [jsonParser, jwtauth], function(req, res, next) {
     if (req.body.url && req.userId) {
         let _url = req.body.url.split('?')[0];
-        Tracker.findOne({watcherId: req.userId}).exec(function (err, tracker) {
+        Tracker.findOne({watcherId: req.userId, url: _url}).exec(function (err, tracker) {
             if (tracker) {
                 res.sendStatus(409);
             } else {
