@@ -4,6 +4,7 @@ var bodyParser = require('body-parser');
 var jwtauth = require('../middleware/jwtAuth');
 const User = db.user;
 const Tracker = db.tracker;
+const PricePoints = db.pricePoint;
 
 const router = express.Router();
 const jsonParser = bodyParser.json();
@@ -21,6 +22,18 @@ router.post('/add', [jsonParser, jwtauth], function(req, res, next) {
                     watcherId: req.userId
                 })
                 .then((data) => {
+                    PricePoints.findOne({url: _url}).exec(function (err, pricePoints) {
+                        if (err) {
+                            console.log(err);
+                            res.sendStatus(500);
+                        }
+                        if (!pricePoints) {
+                            PricePoints.create({
+                                url: _url,
+                                pricepoints: []
+                            })
+                        }
+                    })
                     res.sendStatus(201);
                 })
                 .catch((err) => {

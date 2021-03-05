@@ -7,6 +7,6 @@ db.mongoose = mongoose;
 
 db.user = require('../models/user');
 db.tracker = require('../models/tracker').TrackerModel;
-db.pricePoint = require('../models/tracker').PricePointsModel;
+db.pricePoint = require('../models/pricepoints').PricePointsModel;
 
 module.exports = db;
