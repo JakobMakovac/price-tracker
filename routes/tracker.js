@@ -19,6 +19,8 @@ router.post('/add', [jsonParser, jwtauth], function(req, res, next) {
                 Tracker.create({
                     name: req.body.name,
                     url: _url,
+                    alertPrice: 0,
+                    lowestPrice: 0,
                     watcherId: req.userId
                 })
                 .then((data) => {
@@ -49,10 +51,11 @@ router.post('/add', [jsonParser, jwtauth], function(req, res, next) {
 
 router.put('/update', [jsonParser, jwtauth], function(req, res, next) {
     if (req.userId && req.body.tracker) {
-        Tracker.findOne({watcherId: req.userId, _id: req.body.tracker._id}).exec(function (err, tracker) {
-            if (tracker) {
-                tracker.name = req.body.tracker.name;
-                tracker.save();
+        Tracker.findOneAndUpdate({watcherId: req.userId, _id: req.body.tracker._id}, req.body.tracker).exec(function (err, tracker) {
+            if (err) {
+                console.log(err);
+                res.sendStatus(500);
+            } else if (tracker) {
                 res.sendStatus(200);
             } else {
                 res.sendStatus(404);

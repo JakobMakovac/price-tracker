@@ -6,6 +6,9 @@ var TrackerModel = mongoose.model(
     new Schema({
         name: String,
         url: String,
+        alertPrice: Number,
+        lowestPrice: Number,
+        currentPrice: Number,
         watcherId: String,
     })
 );
