@@ -20,7 +20,8 @@ router.post('/add', [jsonParser, jwtauth], function(req, res, next) {
                     name: req.body.name,
                     url: _url,
                     alertPrice: 0,
-                    lowestPrice: 0,
+                    currentPrice: 0,
+                    lowestPrice: 10000000,
                     watcherId: req.userId
                 })
                 .then((data) => {
