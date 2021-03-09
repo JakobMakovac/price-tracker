@@ -9,6 +9,7 @@ var TrackerModel = mongoose.model(
         alertPrice: Number,
         lowestPrice: Number,
         currentPrice: Number,
+        highestPrice: Number,
         watcherId: String,
     })
 );
